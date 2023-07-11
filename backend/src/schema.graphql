@@ -1,0 +1,39 @@
+scalar Date
+
+type Empty {
+    _: String
+}
+
+type HumanName {
+    id: ID
+    firstName: String
+    lastName: String
+    title: String
+    middleNames: [String]
+}
+
+type Address {
+    id: ID
+    street: String
+    houseNumber: String
+    addition: String
+    city: String
+}
+
+type Patient {
+    id: ID
+    name: HumanName
+    dateOfBirth: Date
+    address: Address
+}
+
+type Medication {
+    labeler: String
+    productCode: String
+    packageCode: String
+}
+
+type Query {
+    listPatients: [Patient]
+    listMedications: [Medication]
+}

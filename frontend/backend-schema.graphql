@@ -1,0 +1,38 @@
+# This file was generated. Do not edit manually.
+
+schema {
+    query: Query
+}
+
+type Address {
+    addition: String
+    city: String
+    houseNumber: String
+    id: ID
+    street: String
+}
+
+type Empty {
+    _: String
+}
+
+type HumanName {
+    firstName: String
+    id: ID
+    lastName: String
+    middleNames: [String]
+    title: String
+}
+
+type Patient {
+    address: Address
+    dateOfBirth: Date
+    id: ID
+    name: HumanName
+}
+
+type Query {
+    listPatients: [Patient]
+}
+
+scalar Date
