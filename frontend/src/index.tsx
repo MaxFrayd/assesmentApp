@@ -59,7 +59,7 @@ export function codeFixingTasks(): NavigationItem[] {
         <InputForms
           name={"Input Forms"}
           description={
-            "There is nothing wrong here? Or is there? How can one improve this component?"
+            "There is nothing wrong here? Or is there? How can one improve this component? Also implement the missing sex input."
           }
           estimatedMinutes={10}
         />
@@ -111,7 +111,7 @@ export function graphqlTasks(): NavigationItem[] {
           name={"Patient list"}
           description={
             "Implement a table containing all patients in the list. We already created the skeleton for you. The table must allow the user" +
-            "to create new patients, update existing ones and to delete them. Make sure to not refetch the table after add / delete operations. " +
+            " to create new patients, update existing ones and to delete them. Make sure to not refetch the table after add / delete operations. " +
             "Instead use the information sent back by the backend to update your cache locally."
           }
           estimatedMinutes={60}

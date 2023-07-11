@@ -2,22 +2,47 @@ import React, { FC, useState } from "react";
 import { Button, Col, Form, Input, InputProps, Row } from "antd";
 import { Task } from "../../../index";
 import { TaskWrapper } from "../../../components/TaskWrapper";
-import { NameFragment } from "../../../__generated__/graphql-generated";
+import {
+  Maybe,
+  NameFragment,
+  Sex,
+} from "../../../__generated__/graphql-generated";
 import { buildFullName } from "../../../utils/formatters";
 
 /**
- * In this task we implemented a skeleton for a patient name input mask.
+ * PART 2: Patients have an attribute `sex`. Use the antd component [enum radio group](https://ant.design/components/radio)
+ * as a template to create a component that looks and behaves the same way with the difference that values can be unselected
+ * by selecting them again. You can use all antd components to solve this task.
+ * Invoking `onSelect` must set the passed element either to null or undefined to unset the value.
+ * Add a reasoning for your choice (null | undefined).
+ *
+ */
+/** Editable Code START **/
+interface SexInputProps {
+  sex: Maybe<Sex>;
+  onChange: (sex: Maybe<Sex>) => void;
+}
+
+const SexInput: FC<SexInputProps> = ({ sex, onChange }) => {
+  return <div>TODO</div>;
+};
+/** Editable Code END **/
+
+/**
+ * PART 1: In this task we implemented a skeleton for a patient name input mask.
  * After submitting the form the patient credentials should be displayed in an alert (already implemented).
  * Additional requirement: The submission button must be disabled if the patient name is not complete.
  * The name can be considered as complete if the first and the last name are set.
  *
  * The state updates seem to work, but they can be improved. Think about how.
  *
- * NOTE: There has to be at least one state!
+ * NOTE: There has to be at least one state! (sex excluded: sex + a second one)
  *
  * Write down all steps as comments that lead to your final solution including the problems with the original version.
  */
 export const InputForms: FC<Task> = (task) => {
+  const [sex, setSex] = useState<Maybe<Sex>>();
+
   /** Editable Code START **/
   const [title, setTitle] = useState<string>();
   const [middleNames, setMiddleNames] = useState<string[]>([]);
@@ -52,7 +77,7 @@ export const InputForms: FC<Task> = (task) => {
       middleNames,
     };
     // Don't change the alert
-    alert(buildFullName(patientName));
+    alert(`${buildFullName(patientName)} ${sex}`);
   };
 
   const disabled = false;
@@ -97,6 +122,11 @@ export const InputForms: FC<Task> = (task) => {
                 value={lastName}
                 onChange={updateCredentials}
               />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label={"Sex"}>
+              <SexInput sex={sex} onChange={(value) => setSex(value)} />
             </Form.Item>
           </Col>
           <Col span={24}>

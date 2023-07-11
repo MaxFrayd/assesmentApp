@@ -1,9 +1,7 @@
 # Must only contain the properties relevant for the table
 fragment PatientOptimized on Patient {
     # TODO: extend the fragment by the required attributes
-    name {
-        ...Name
-    }
+    sex
 }
 
 # Must contain all properties

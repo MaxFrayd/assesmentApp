@@ -44,12 +44,19 @@ type Patient {
     dateOfBirth: Date
     id: ID
     name: HumanName
+    sex: Sex
 }
 
 type Query {
     getPatient(id: String!): Patient
     listPatientMedications(patientId: String!): [Medication]
     listPatients: [Patient]
+}
+
+enum Sex {
+    Diverse
+    Female
+    Male
 }
 
 scalar Date
@@ -75,4 +82,5 @@ input PatientInput {
     dateOfBirth: Date
     id: ID
     name: HumanNameInput
+    sex: Sex
 }

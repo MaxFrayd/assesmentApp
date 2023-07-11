@@ -16,6 +16,8 @@ interface PatientPreviewProps {
  * Implement this component using [antd forms](https://ant.design/components/form). Choose suitable antd input components
  * for the corresponding patient properties.
  *
+ * Hint: You might want to add an address formatter that works similar to the name formatter.
+ *
  * Note: A patient object is valid as long as an id is set. All other fields are optional.
  */
 export const EditPatientModal: FC<PatientPreviewProps> = ({
