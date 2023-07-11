@@ -1,7 +1,7 @@
 import React, { FC, useRef, useState } from "react";
 import { TaskWrapper } from "../../../components/TaskWrapper";
 import { Task } from "../../../index";
-import { Form, Input } from "antd";
+import { Button, Form, Input, Space } from "antd";
 
 /** Editable Code START **/
 interface OddNumberInputProps {
@@ -48,6 +48,20 @@ export const CustomComponent: FC<Task> = (task) => {
             // ref={evenRef}
             /** Editable Code END **/
           />
+        </Form.Item>
+        <Form.Item label={"Actions"}>
+          <Space>
+            <Button
+            // onClick={() => oddRef.current?.focus()}
+            >
+              Focus odd
+            </Button>
+            <Button
+            // onClick={() => evenRef.current?.focus()}
+            >
+              Focus even
+            </Button>
+          </Space>
         </Form.Item>
       </Form>
     </TaskWrapper>

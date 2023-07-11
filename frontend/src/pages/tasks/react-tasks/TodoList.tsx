@@ -21,7 +21,7 @@ interface TodoItemProps {
  * Write down all steps as comments that lead to your final solution including the problems with the original version.
  */
 export const TodoList: FC<Task> = (task) => {
-  // Don't change the initial items. However, you are allowed to move this constant to a different place.
+  // NOTE: Don't change the content of the initial items!
   const initialItems: TodoItemProps[] = [
     {
       id: uuid(),

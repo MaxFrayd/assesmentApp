@@ -24,8 +24,7 @@ export const PatientList: FC<Task> = (task) => {
   const [patient, setPatient] = useState<Patient | null>();
 
   /** Editable Code START **/
-  const { data: patientsData } = useListPatientsQuery();
-  const patients: Maybe<Maybe<Patient>[]> = patientsData?.listPatients;
+  const patients: Maybe<Maybe<Patient>[]> = [];
 
   const handleDelete = (patientId: Maybe<string>) => {
     notification.error({ message: "TODO" });

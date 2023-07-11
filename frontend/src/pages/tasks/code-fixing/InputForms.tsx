@@ -8,10 +8,12 @@ import { buildFullName } from "../../../utils/formatters";
 /**
  * In this task we implemented a skeleton for a patient name input mask.
  * After submitting the form the patient credentials should be displayed in an alert (already implemented).
- * Additional requirement: The submission button must be disabled if either the patient name is not complete.
+ * Additional requirement: The submission button must be disabled if the patient name is not complete.
  * The name can be considered as complete if the first and the last name are set.
  *
- * The state updates seem to work, but they can be improved. Think about how. For the name you can
+ * The state updates seem to work, but they can be improved. Think about how.
+ *
+ * NOTE: There has to be at least one state!
  *
  * Write down all steps as comments that lead to your final solution including the problems with the original version.
  */
