@@ -12,7 +12,23 @@ type HumanName {
     middleNames: [String]
 }
 
+input HumanNameInput {
+    id: ID
+    firstName: String
+    lastName: String
+    title: String
+    middleNames: [String]
+}
+
 type Address {
+    id: ID
+    street: String
+    houseNumber: String
+    addition: String
+    city: String
+}
+
+input AddressInput {
     id: ID
     street: String
     houseNumber: String
@@ -27,6 +43,13 @@ type Patient {
     address: Address
 }
 
+input PatientInput {
+    id: ID
+    name: HumanNameInput
+    dateOfBirth: Date
+    address: AddressInput
+}
+
 type Medication {
     labeler: String
     productCode: String
@@ -34,6 +57,17 @@ type Medication {
 }
 
 type Query {
+    # Patient
     listPatients: [Patient]
-    listMedications: [Medication]
+    getPatient(id: String!): Patient
+
+    # Medications
+    listPatientMedications(patientId: String!): [Medication]
+}
+
+type Mutation {
+    # Patient
+    createPatient: Patient
+    updatePatient(patient: PatientInput): Patient
+    deletePatient(id: String): String
 }

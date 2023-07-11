@@ -4,6 +4,7 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -23,6 +24,14 @@ export type Address = {
   street?: Maybe<Scalars['String']>;
 };
 
+export type AddressInput = {
+  addition?: InputMaybe<Scalars['String']>;
+  city?: InputMaybe<Scalars['String']>;
+  houseNumber?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  street?: InputMaybe<Scalars['String']>;
+};
+
 export type Empty = {
   __typename?: 'Empty';
   _?: Maybe<Scalars['String']>;
@@ -37,6 +46,38 @@ export type HumanName = {
   title?: Maybe<Scalars['String']>;
 };
 
+export type HumanNameInput = {
+  firstName?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  lastName?: InputMaybe<Scalars['String']>;
+  middleNames?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type Medication = {
+  __typename?: 'Medication';
+  labeler?: Maybe<Scalars['String']>;
+  packageCode?: Maybe<Scalars['String']>;
+  productCode?: Maybe<Scalars['String']>;
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  createPatient?: Maybe<Patient>;
+  deletePatient?: Maybe<Scalars['String']>;
+  updatePatient?: Maybe<Patient>;
+};
+
+
+export type MutationDeletePatientArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationUpdatePatientArgs = {
+  patient?: InputMaybe<PatientInput>;
+};
+
 export type Patient = {
   __typename?: 'Patient';
   address?: Maybe<Address>;
@@ -45,9 +86,28 @@ export type Patient = {
   name?: Maybe<HumanName>;
 };
 
+export type PatientInput = {
+  address?: InputMaybe<AddressInput>;
+  dateOfBirth?: InputMaybe<Scalars['Date']>;
+  id?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<HumanNameInput>;
+};
+
 export type Query = {
   __typename?: 'Query';
+  getPatient?: Maybe<Patient>;
+  listPatientMedications?: Maybe<Array<Maybe<Medication>>>;
   listPatients?: Maybe<Array<Maybe<Patient>>>;
+};
+
+
+export type QueryGetPatientArgs = {
+  id: Scalars['String'];
+};
+
+
+export type QueryListPatientMedicationsArgs = {
+  patientId: Scalars['String'];
 };
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
@@ -123,12 +183,17 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
   Address: ResolverTypeWrapper<Address>;
+  AddressInput: AddressInput;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Date: ResolverTypeWrapper<Scalars['Date']>;
   Empty: ResolverTypeWrapper<Empty>;
   HumanName: ResolverTypeWrapper<HumanName>;
+  HumanNameInput: HumanNameInput;
   ID: ResolverTypeWrapper<Scalars['ID']>;
+  Medication: ResolverTypeWrapper<Medication>;
+  Mutation: ResolverTypeWrapper<{}>;
   Patient: ResolverTypeWrapper<Patient>;
+  PatientInput: PatientInput;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
 }>;
@@ -136,12 +201,17 @@ export type ResolversTypes = ResolversObject<{
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
   Address: Address;
+  AddressInput: AddressInput;
   Boolean: Scalars['Boolean'];
   Date: Scalars['Date'];
   Empty: Empty;
   HumanName: HumanName;
+  HumanNameInput: HumanNameInput;
   ID: Scalars['ID'];
+  Medication: Medication;
+  Mutation: {};
   Patient: Patient;
+  PatientInput: PatientInput;
   Query: {};
   String: Scalars['String'];
 }>;
@@ -173,6 +243,19 @@ export type HumanNameResolvers<ContextType = any, ParentType extends ResolversPa
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
+export type MedicationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Medication'] = ResolversParentTypes['Medication']> = ResolversObject<{
+  labeler?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  packageCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  productCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
+  createPatient?: Resolver<Maybe<ResolversTypes['Patient']>, ParentType, ContextType>;
+  deletePatient?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, Partial<MutationDeletePatientArgs>>;
+  updatePatient?: Resolver<Maybe<ResolversTypes['Patient']>, ParentType, ContextType, Partial<MutationUpdatePatientArgs>>;
+}>;
+
 export type PatientResolvers<ContextType = any, ParentType extends ResolversParentTypes['Patient'] = ResolversParentTypes['Patient']> = ResolversObject<{
   address?: Resolver<Maybe<ResolversTypes['Address']>, ParentType, ContextType>;
   dateOfBirth?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
@@ -182,6 +265,8 @@ export type PatientResolvers<ContextType = any, ParentType extends ResolversPare
 }>;
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
+  getPatient?: Resolver<Maybe<ResolversTypes['Patient']>, ParentType, ContextType, RequireFields<QueryGetPatientArgs, 'id'>>;
+  listPatientMedications?: Resolver<Maybe<Array<Maybe<ResolversTypes['Medication']>>>, ParentType, ContextType, RequireFields<QueryListPatientMedicationsArgs, 'patientId'>>;
   listPatients?: Resolver<Maybe<Array<Maybe<ResolversTypes['Patient']>>>, ParentType, ContextType>;
 }>;
 
@@ -190,6 +275,8 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   Date?: GraphQLScalarType;
   Empty?: EmptyResolvers<ContextType>;
   HumanName?: HumanNameResolvers<ContextType>;
+  Medication?: MedicationResolvers<ContextType>;
+  Mutation?: MutationResolvers<ContextType>;
   Patient?: PatientResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
 }>;

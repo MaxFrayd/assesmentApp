@@ -1,26 +1,23 @@
-import { Patient, Resolvers } from "../__generated__/resolvers-types";
-import { randomUUID } from "crypto";
+import {Resolvers} from "../__generated__/resolvers-types";
+import lodash from "lodash";
+import {patientResolvers} from "./patient-resolvers";
+import {GraphQLScalarType} from "graphql";
 
-const patients: Patient[] = [
-  {
-    id: randomUUID(),
-    name: {
-      firstName: "Frank",
-      lastName: "Müller",
+const dateScalar = new GraphQLScalarType({
+    name: "Date",
+    parseValue(value: string) {
+        return new Date(value);
     },
-    address: {
-      id: randomUUID(),
-      street: "Teststreet",
-      houseNumber: "1",
-      addition: "a",
+    serialize(value: Date) {
+        return value.toISOString();
     },
-  },
-];
+});
 
-export const patientResolvers: Resolvers = {
-  Query: {
-    listPatients: async (parent, args, context) => {
-      return patients;
-    },
-  },
-};
+const scalarResolvers: Resolvers = {
+    Date: dateScalar
+}
+
+export const resolvers: Resolvers = lodash.merge(
+    scalarResolvers,
+    patientResolvers
+);

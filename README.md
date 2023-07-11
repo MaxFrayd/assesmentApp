@@ -57,6 +57,18 @@ to run the frontend server.
 
 After the execution you can access the frontend via the url [http://localhost:4000](http://localhost:4000) in your preferred browser.
 
+## Graphql
+
+All graphql changes that you make have to be done in the corresponding `*.graphql` files.
+All required changes are marked as TODO comments. To build the typescript code run the command:
+This will create all hooks that you require to solve the tasks.
+
+```shell
+yarn generate
+```
+
+After changing the
+
 ## Misc
 // TODO: @Angelina
 
