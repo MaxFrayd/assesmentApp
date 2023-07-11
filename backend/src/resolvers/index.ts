@@ -2,6 +2,7 @@ import {Resolvers} from "../__generated__/resolvers-types";
 import lodash from "lodash";
 import {patientResolvers} from "./patient-resolvers";
 import {GraphQLScalarType} from "graphql";
+import {medicationResolvers} from "./medication-resolvers";
 
 const dateScalar = new GraphQLScalarType({
     name: "Date",
@@ -19,5 +20,6 @@ const scalarResolvers: Resolvers = {
 
 export const resolvers: Resolvers = lodash.merge(
     scalarResolvers,
-    patientResolvers
+    patientResolvers,
+    medicationResolvers
 );

@@ -3,7 +3,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import * as path from "path";
 import { fileURLToPath } from "url";
 import { readFileSync } from "fs";
-import { resolvers } from "./resolvers/patient-resolvers";
+import { resolvers } from "./resolvers";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

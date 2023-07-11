@@ -4,6 +4,12 @@ type Empty {
     _: String
 }
 
+enum Sex {
+    Male
+    Female
+    Diverse
+}
+
 type HumanName {
     id: ID
     firstName: String
@@ -41,6 +47,7 @@ type Patient {
     name: HumanName
     dateOfBirth: Date
     address: Address
+    sex: Sex
 }
 
 input PatientInput {
@@ -48,12 +55,15 @@ input PatientInput {
     name: HumanNameInput
     dateOfBirth: Date
     address: AddressInput
+    sex: Sex
 }
 
 type Medication {
     labeler: String
     productCode: String
     packageCode: String
+    patientId: ID
+    brand: String
 }
 
 type Query {

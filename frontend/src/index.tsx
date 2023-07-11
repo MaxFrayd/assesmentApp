@@ -109,7 +109,11 @@ export function graphqlTasks(): NavigationItem[] {
       element: (
         <PatientList
           name={"Patient list"}
-          description={"TODO"}
+          description={
+            "Implement a table containing all patients in the list. We already created the skeleton for you. The table must allow the user" +
+            "to create new patients, update existing ones and to delete them. Make sure to not refetch the table after add / delete operations. " +
+            "Instead use the information sent back by the backend to update your cache locally."
+          }
           estimatedMinutes={60}
         />
       ),
@@ -121,7 +125,9 @@ export function graphqlTasks(): NavigationItem[] {
         <PatientList
           name={"Patient medication"}
           description={
-            "In this task you have to extend the view created in the task Patient list by the patients medication"
+            "In this task you have to extend the view created in the task Patient list by the patients medication. " +
+            "Create a row expansion that lists the medications for the current expanded table row. " +
+            "Please note that we only created mock data for the first patient in the list."
           }
           estimatedMinutes={30}
         />

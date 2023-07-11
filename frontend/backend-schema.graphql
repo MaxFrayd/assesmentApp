@@ -2,6 +2,7 @@
 
 schema {
     query: Query
+    mutation: Mutation
 }
 
 type Address {
@@ -24,6 +25,20 @@ type HumanName {
     title: String
 }
 
+type Medication {
+    brand: String
+    labeler: String
+    packageCode: String
+    patientId: ID
+    productCode: String
+}
+
+type Mutation {
+    createPatient: Patient
+    deletePatient(id: String): String
+    updatePatient(patient: PatientInput): Patient
+}
+
 type Patient {
     address: Address
     dateOfBirth: Date
@@ -32,7 +47,32 @@ type Patient {
 }
 
 type Query {
+    getPatient(id: String!): Patient
+    listPatientMedications(patientId: String!): [Medication]
     listPatients: [Patient]
 }
 
 scalar Date
+
+input AddressInput {
+    addition: String
+    city: String
+    houseNumber: String
+    id: ID
+    street: String
+}
+
+input HumanNameInput {
+    firstName: String
+    id: ID
+    lastName: String
+    middleNames: [String]
+    title: String
+}
+
+input PatientInput {
+    address: AddressInput
+    dateOfBirth: Date
+    id: ID
+    name: HumanNameInput
+}

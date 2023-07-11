@@ -56,8 +56,10 @@ export type HumanNameInput = {
 
 export type Medication = {
   __typename?: 'Medication';
+  brand?: Maybe<Scalars['String']>;
   labeler?: Maybe<Scalars['String']>;
   packageCode?: Maybe<Scalars['String']>;
+  patientId?: Maybe<Scalars['ID']>;
   productCode?: Maybe<Scalars['String']>;
 };
 
@@ -84,6 +86,7 @@ export type Patient = {
   dateOfBirth?: Maybe<Scalars['Date']>;
   id?: Maybe<Scalars['ID']>;
   name?: Maybe<HumanName>;
+  sex?: Maybe<Sex>;
 };
 
 export type PatientInput = {
@@ -91,6 +94,7 @@ export type PatientInput = {
   dateOfBirth?: InputMaybe<Scalars['Date']>;
   id?: InputMaybe<Scalars['ID']>;
   name?: InputMaybe<HumanNameInput>;
+  sex?: InputMaybe<Sex>;
 };
 
 export type Query = {
@@ -109,6 +113,12 @@ export type QueryGetPatientArgs = {
 export type QueryListPatientMedicationsArgs = {
   patientId: Scalars['String'];
 };
+
+export enum Sex {
+  Diverse = 'Diverse',
+  Female = 'Female',
+  Male = 'Male'
+}
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
 export type ResolversObject<TObject> = WithIndex<TObject>;
@@ -195,6 +205,7 @@ export type ResolversTypes = ResolversObject<{
   Patient: ResolverTypeWrapper<Patient>;
   PatientInput: PatientInput;
   Query: ResolverTypeWrapper<{}>;
+  Sex: Sex;
   String: ResolverTypeWrapper<Scalars['String']>;
 }>;
 
@@ -244,8 +255,10 @@ export type HumanNameResolvers<ContextType = any, ParentType extends ResolversPa
 }>;
 
 export type MedicationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Medication'] = ResolversParentTypes['Medication']> = ResolversObject<{
+  brand?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   labeler?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   packageCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  patientId?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
   productCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
@@ -261,6 +274,7 @@ export type PatientResolvers<ContextType = any, ParentType extends ResolversPare
   dateOfBirth?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
   name?: Resolver<Maybe<ResolversTypes['HumanName']>, ParentType, ContextType>;
+  sex?: Resolver<Maybe<ResolversTypes['Sex']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 

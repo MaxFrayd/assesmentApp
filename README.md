@@ -12,6 +12,22 @@
 For this task you have to run a local node backend as well as a local frontend.
 Please make sure to start the backend before running the frontend.
 
+## Tasks
+
+After starting the frontend you will see a sidebar with several tasks that you should implement.
+For each task we defined the area of editable code (code that you are allowed to change in order to complete the task).
+
+```typescript
+/** Editable Code START **/
+// you can do whatever you want here
+// your comments also go here
+/** Editable Code END **/
+```
+
+Make sure that you document the steps that lead to your final solution in the comments before submitting the coding challenge.
+This is essential for all tasks related to code quality.
+
+
 ### Backend (Port 400)
 
 You can find the backend in the folder [/backend](./backend).
@@ -37,6 +53,8 @@ After running the backend you should see a command line message stating:
 
 **❗Important: do not change anything within this project!**
 
+After restarting the backend the state will be reset. This gives you to test your implementations deterministically.
+
 ### Frontend (Port 3000)
 
 You can find the backend in the folder [/frontend](./frontend). This folder contains a set of programming tasks which are marked as such.
@@ -55,7 +73,7 @@ yarn start
 
 to run the frontend server. 
 
-After the execution you can access the frontend via the url [http://localhost:4000](http://localhost:4000) in your preferred browser.
+**Hint:** After the execution you can access the frontend via the url [http://localhost:4000](http://localhost:4000) in your preferred browser.
 
 ## Graphql
 

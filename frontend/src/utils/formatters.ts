@@ -1,5 +1,9 @@
 import { HumanName } from "../__generated__/graphql-generated";
 
+/** Editable Code START **/
+// HINT: you might want to create a formatter for addresses
+/** Editable Code END **/
+
 export const buildFullName = ({
   title,
   firstName,
