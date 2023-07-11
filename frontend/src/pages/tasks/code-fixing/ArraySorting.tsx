@@ -16,9 +16,9 @@ import { randomIntArrayInRange, shuffle } from "../../../utils/array-utils";
  * Write down all steps as comments that lead to your final solution including the problems with the original version.
  */
 export const ArraySorting: FC<Task> = (task) => {
-  /** Editable Code START **/
   const [someArray, setSomeArray] = useState<number[]>([]);
 
+  /** Editable Code START **/
   const [sortedArray, setSortedArray] = useState<number[]>([]);
 
   useEffect(() => {
