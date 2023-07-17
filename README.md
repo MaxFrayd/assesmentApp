@@ -106,10 +106,16 @@ yarn generate
 This will create all hooks that you require to solve the tasks.
 
 
-## Misc
+## Dos and Dont's
 
-- ❗Please do not push your solution to GitHub or any other online platform.
+- Do not push your solution to GitHub (public repositories) or any other online platform
 - You are **NOT** allowed to install any additional libraries
 - You are allowed to use all online sources available
-    - If you decide to copy/past source code from external resources (e.g. StackOverflow) that are neither **antd documentations** nor other documentations, add the corresponding references
+    - If you decide to copy/past source code from external resources (e.g. StackOverflow) that are neither **antd documentations** nor other documentations of installed libraries, add the corresponding references
     - You must be able to explain code snippets copy/pasted from external sources
+
+## Useful resources
+- [TypeScript](https://www.typescriptlang.org/)
+- [React Hooks](https://react.dev/reference/react)
+- [GraphQL](https://graphql.org/)
+- [Apollo Client](https://www.apollographql.com/docs/react/)

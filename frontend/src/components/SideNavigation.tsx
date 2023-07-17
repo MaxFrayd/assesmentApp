@@ -4,7 +4,7 @@ import {
   codeFixingTasks,
   reactTasks,
   graphqlTasks,
-} from "../index";
+} from "@/index";
 import { Link, useLocation } from "react-router-dom";
 
 interface NavigationGroup {
