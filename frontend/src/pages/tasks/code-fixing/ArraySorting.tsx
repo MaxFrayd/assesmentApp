@@ -7,9 +7,9 @@ import { TaskWrapper } from "@/components/TaskWrapper";
 /**
  * In this task you have to fix the state handling and the array operations of the component.
  * The expected behavior is to display two arrays with the following invariants:
- *    The `currentArray` is an array of length 10 which gets randomly generated on page load.
- *    The `sortedArray` contains the same elements as the `currentArray` sorted ascending.
- *    The button `Shuffle Array` should randomize the order of the elements of the `currentArray`. Why is this not working?
+ *    The `someArray` is an array of length 10 which gets randomly generated on page load.
+ *    The `sortedArray` contains the same elements as the `someArray` sorted ascending.
+ *    The button `Shuffle Array` should randomize the order of the elements of the `someArray`. Why is this not working?
  *
  * There are multiple things that have to be fixed and that can be improved. Also think about the render efficiency of this component.
  *

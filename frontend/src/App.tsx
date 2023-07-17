@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { Outlet } from "react-router-dom";
 import { TopBar } from "./components/TopBar";
 import { SideNavigation } from "./components/SideNavigation";
+import "./global.css";
 
 const App: FC = () => {
   return (

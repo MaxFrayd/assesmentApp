@@ -15,6 +15,9 @@ Please make sure to start the backend before running the frontend.
 ## Tasks
 
 After starting the frontend you will see a sidebar with several tasks that you should implement.
+
+### Editable code snippets
+
 For each task we defined the area of editable code (code that you are allowed to change in order to complete the task).
 
 ```typescript
@@ -24,8 +27,25 @@ For each task we defined the area of editable code (code that you are allowed to
 /** Editable Code END **/
 ```
 
+### Comments
 Make sure that you document the steps that lead to your final solution in the comments before submitting the coding challenge.
-This is essential for all tasks related to code quality.
+This is essential for all tasks related to code quality. There is no need to comment out old code snippets.
+
+**Example:**
+
+```typescript
+// 1. I removed the use-effect as it is not doing anything
+// 2. I reduced the amounts of renders by...
+// 3. The problem with xy was that...
+```
+
+### Code Quality
+
+1. Make sure that your code is **clean**
+2. Use consistent variable and file naming
+3. Do not submit dead code
+4. Do not leave commented out code snippets in your submission
+3. **Remove all console logs before submitting the challenge**
 
 
 ### Backend (Port 400)
@@ -48,7 +68,7 @@ to run the backend server.
 After running the backend you should see a command line message stating:
 
 ```
-🚀  Server ready at: http://localhost:4000/
+🚀  Server ready at: http://localhost:4000/graphql
 ```
 
 **❗Important: do not change anything within this project!**
@@ -65,13 +85,7 @@ To execute the frontend change into the mentioned directory and execute:
 ```shell
 yarn
 ```
-to install all required dependencies.
-
-```shell
-yarn generate
-```
-
-to build the typescript code for your graphql definitions. And
+to install all required dependencies. And
 
 ```shell
 yarn start
@@ -79,22 +93,23 @@ yarn start
 
 to run the frontend server. 
 
-**Hint:** After the execution you can access the frontend via the url [http://localhost:4000/graphql](http://localhost:4000/graphql) in your preferred browser.
+**Hint:** After the execution you can access the frontend via the url [http://localhost:3000](http://localhost:3000) in your preferred browser.
 
 ## Graphql
 
 All graphql changes that you make have to be done in the corresponding `*.graphql` files.
-All required changes are marked as TODO comments. To build the typescript code run the command:
-This will create all hooks that you require to solve the tasks.
+All required changes are marked as `TODO` comments. To build the typescript code run the following command:
 
 ```shell
 yarn generate
 ```
+This will create all hooks that you require to solve the tasks.
 
-After changing the
 
 ## Misc
-// TODO: @Angelina
 
 - ❗Please do not push your solution to GitHub or any other online platform.
 - You are **NOT** allowed to install any additional libraries
+- You are allowed to use all online sources available
+    - If you decide to copy/past source code from external resources (e.g. StackOverflow) that are neither **antd documentations** nor other documentations, add the corresponding references
+    - You must be able to explain code snippets copy/pasted from external sources
