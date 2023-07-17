@@ -1,12 +1,12 @@
 import React, { FC, useState } from "react";
-import { Task } from "../../..";
-import { TaskWrapper } from "../../../components/TaskWrapper";
+import { Task } from "@/index";
 import { Button, notification, Popconfirm, Space, Table } from "antd";
 import { ColumnProps } from "antd/es/table";
-import { Maybe, Patient } from "../../../__generated__/graphql-generated";
 import { EditPatientModal } from "./EditPatientModal";
 import { DeleteTwoTone, EditTwoTone, PlusOutlined } from "@ant-design/icons";
 import { PatientMedicationRowExpansion } from "./PatientMedicationRowExpansion";
+import { Maybe, Patient } from "@/__generated__/graphql-generated";
+import { TaskWrapper } from "@/components/TaskWrapper";
 
 /**
  * The component `PatientList` consists of a table, a modal to edit a patient and a row expansion.

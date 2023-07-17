@@ -1,13 +1,9 @@
 import React, { FC, useState } from "react";
 import { Button, Col, Form, Input, InputProps, Row } from "antd";
-import { Task } from "../../../index";
-import { TaskWrapper } from "../../../components/TaskWrapper";
-import {
-  Maybe,
-  NameFragment,
-  Sex,
-} from "../../../__generated__/graphql-generated";
-import { buildFullName } from "../../../utils/formatters";
+import { Task } from "@/index";
+import { buildFullName } from "@/utils/formatters";
+import { TaskWrapper } from "@/components/TaskWrapper";
+import { Maybe, NameFragment, Sex } from "@/__generated__/graphql-generated";
 
 /**
  * PART 2: Patients have an attribute `sex`. Use the antd component [enum radio group](https://ant.design/components/radio)

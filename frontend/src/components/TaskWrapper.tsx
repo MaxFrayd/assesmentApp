@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Task } from "../index";
+import { Task } from "@/index";
 import { Divider } from "antd";
 
 interface TaskWrapperProps {

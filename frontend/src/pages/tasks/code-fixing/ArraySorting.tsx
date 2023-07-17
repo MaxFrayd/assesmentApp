@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
 import { Button } from "antd";
-import { Task } from "../../../index";
-import { TaskWrapper } from "../../../components/TaskWrapper";
-import { randomIntArrayInRange, shuffle } from "../../../utils/array-utils";
+import { Task } from "@/index";
+import { randomIntArrayInRange, shuffle } from "@/utils/array-utils";
+import { TaskWrapper } from "@/components/TaskWrapper";
 
 /**
  * In this task you have to fix the state handling and the array operations of the component.

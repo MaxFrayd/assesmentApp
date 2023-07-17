@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { Maybe } from "../../../__generated__/graphql-generated";
 import { Alert } from "antd";
+import { Maybe } from "@/__generated__/graphql-generated";
 
 interface PatientMedicationRowExpansion {
   patientId: Maybe<string>;

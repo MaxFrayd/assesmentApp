@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Alert, Modal } from "antd";
-import { Maybe, Patient } from "../../../__generated__/graphql-generated";
-import { buildFullName } from "../../../utils/formatters";
+import { Maybe, Patient } from "@/__generated__/graphql-generated";
+import { buildFullName } from "@/utils/formatters";
 
 interface PatientPreviewProps {
   patient: Maybe<Patient>;

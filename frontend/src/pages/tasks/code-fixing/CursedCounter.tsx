@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import { Button } from "antd";
-import { TaskWrapper } from "../../../components/TaskWrapper";
-import { Task } from "../../../index";
+import { TaskWrapper } from "@/components/TaskWrapper";
+import { Task } from "@/index";
 
 const MAGIC_NUMBER = 1;
 

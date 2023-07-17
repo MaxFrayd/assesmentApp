@@ -1,9 +1,9 @@
-import React, { FC, useCallback, useState } from "react";
-import { Task } from "../../../index";
-import { TaskWrapper } from "../../../components/TaskWrapper";
+import React, { FC, useState } from "react";
 import uuid from "react-uuid";
 import { Button, Checkbox, Input, Modal, notification } from "antd";
 import { DeleteTwoTone, PlusOutlined } from "@ant-design/icons";
+import { Task } from "@/index";
+import { TaskWrapper } from "@/components/TaskWrapper";
 
 interface TodoItemProps {
   id: string;

@@ -1,7 +1,7 @@
-import React, { FC, useEffect, useRef, useState } from "react";
-import { TaskWrapper } from "../../../components/TaskWrapper";
-import { Task } from "../../../index";
+import React, { FC, useEffect, useState } from "react";
+import { Task } from "@/index";
 import { Form, Input, notification, Radio } from "antd";
+import { TaskWrapper } from "@/components/TaskWrapper";
 
 /** Editable Code START **/
 
