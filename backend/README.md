@@ -14,3 +14,5 @@ Run backend:
 ```shell
 yarn start
 ```
+
+After the start the playground can be accessed via [http://localhost:4000/graphql](http://localhost:4000/graphql)

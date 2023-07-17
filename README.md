@@ -65,7 +65,13 @@ To execute the frontend change into the mentioned directory and execute:
 ```shell
 yarn
 ```
-to install all required dependencies. And
+to install all required dependencies.
+
+```shell
+yarn generate
+```
+
+to build the typescript code for your graphql definitions. And
 
 ```shell
 yarn start
@@ -73,7 +79,7 @@ yarn start
 
 to run the frontend server. 
 
-**Hint:** After the execution you can access the frontend via the url [http://localhost:4000](http://localhost:4000) in your preferred browser.
+**Hint:** After the execution you can access the frontend via the url [http://localhost:4000/graphql](http://localhost:4000/graphql) in your preferred browser.
 
 ## Graphql
 
