@@ -18,6 +18,8 @@ interface TodoItemProps {
  * Your task is to improve this skeleton and to add the functionalities `create item`, `delete item` and mark
  * item as `done` / `to be done`.
  *
+ * Deleting a to-do item must be confirmed by the user. You can use the component [Popconfirm](https://ant.design/components/popconfirm).
+ *
  * Write down all steps as comments that lead to your final solution including the problems with the original version.
  */
 export const TodoList: FC<Task> = (task) => {
@@ -55,25 +57,30 @@ export const TodoList: FC<Task> = (task) => {
     });
   };
 
-  const TodoItem: FC<TodoItemProps> = ({ done, name }) => {
-    return (
-      <div
-        className={
-          "w-full rounded overflow-hidden bg-white shadow-lg flex justify-between p-4"
-        }
-      >
-        {name}
-        <div className={"flex justify-content items-center space-x-4"}>
-          <Checkbox checked={done} onChange={openModal} />
-          <DeleteTwoTone
-            className={"cursor-pointer"}
-            twoToneColor={"red"}
-            onClick={openModal}
-          />
-        </div>
-      </div>
-    );
+  const handleDelete = (id: string) => {
+    notification.error({
+      message: `TODO implement deletion of item with id ${id}`,
+    });
   };
+
+  const TodoItem: FC<TodoItemProps> = ({ done, name, id }) => (
+    <div
+      className={
+        "w-full rounded overflow-hidden bg-white shadow-lg flex justify-between p-4"
+      }
+    >
+      {name}
+      <div className={"flex justify-content items-center space-x-4"}>
+        <Checkbox checked={done} onChange={openModal} />
+        <DeleteTwoTone
+          className={"cursor-pointer"}
+          twoToneColor={"red"}
+          // TODO add a confirmation layer before executing the deletion
+          onClick={() => handleDelete(id)}
+        />
+      </div>
+    </div>
+  );
 
   return (
     <TaskWrapper task={task}>

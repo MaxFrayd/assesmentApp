@@ -21,7 +21,7 @@ export const PatientList: FC<Task> = (task) => {
   const patients: Maybe<Maybe<Patient>[]> = [];
 
   const handleDelete = (patientId: Maybe<string>) => {
-    notification.error({ message: "TODO" });
+    notification.error({ message: `TODO delete patient with ID ${patientId}` });
   };
 
   const columns: ColumnProps<Patient>[] = [
