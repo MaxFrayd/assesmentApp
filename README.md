@@ -77,7 +77,7 @@ After restarting the backend the state will be reset. This gives you to test you
 
 ### Frontend (Port 3000)
 
-You can find the backend in the folder [/frontend](./frontend). This folder contains a set of programming tasks which are marked as such.
+You can find the frontend in the folder [/frontend](./frontend). This folder contains a set of programming tasks which are marked as such.
 You can derive all further implementation details in those files.
 
 To execute the frontend change into the mentioned directory and execute:
