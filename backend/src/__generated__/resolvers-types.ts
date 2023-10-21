@@ -71,13 +71,18 @@ export type Mutation = {
 };
 
 
+export type MutationCreatePatientArgs = {
+  patient?: InputMaybe<PatientInput>;
+};
+
+
 export type MutationDeletePatientArgs = {
-  id?: InputMaybe<Scalars['String']>;
+  id: Scalars['String'];
 };
 
 
 export type MutationUpdatePatientArgs = {
-  patient?: InputMaybe<PatientInput>;
+  patient: PatientInput;
 };
 
 export type Patient = {
@@ -264,9 +269,9 @@ export type MedicationResolvers<ContextType = any, ParentType extends ResolversP
 }>;
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
-  createPatient?: Resolver<Maybe<ResolversTypes['Patient']>, ParentType, ContextType>;
-  deletePatient?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, Partial<MutationDeletePatientArgs>>;
-  updatePatient?: Resolver<Maybe<ResolversTypes['Patient']>, ParentType, ContextType, Partial<MutationUpdatePatientArgs>>;
+  createPatient?: Resolver<Maybe<ResolversTypes['Patient']>, ParentType, ContextType, Partial<MutationCreatePatientArgs>>;
+  deletePatient?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<MutationDeletePatientArgs, 'id'>>;
+  updatePatient?: Resolver<Maybe<ResolversTypes['Patient']>, ParentType, ContextType, RequireFields<MutationUpdatePatientArgs, 'patient'>>;
 }>;
 
 export type PatientResolvers<ContextType = any, ParentType extends ResolversParentTypes['Patient'] = ResolversParentTypes['Patient']> = ResolversObject<{

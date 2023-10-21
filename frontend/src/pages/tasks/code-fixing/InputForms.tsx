@@ -1,9 +1,10 @@
-import React, { FC, useState } from "react";
-import { Button, Col, Form, Input, InputProps, Row } from "antd";
-import { Task } from "@/index";
-import { buildFullName } from "@/utils/formatters";
-import { TaskWrapper } from "@/components/TaskWrapper";
-import { Maybe, NameFragment, Sex } from "@/__generated__/graphql-generated";
+import React, { FC, useState } from 'react';
+import { Radio } from 'antd';
+import { Button, Col, Form, Input, InputProps, Row } from 'antd';
+import { Task } from '@/index';
+import { buildFullName } from '@/utils/formatters';
+import { TaskWrapper } from '@/components/TaskWrapper';
+import { Maybe, NameFragment, Sex } from '@/__generated__/graphql-generated';
 
 /**
  * PART 2: Patients have an attribute `sex`. Use the antd component [enum radio group](https://ant.design/components/radio)
@@ -18,10 +19,23 @@ interface SexInputProps {
   sex: Maybe<Sex>;
   onChange: (sex: Maybe<Sex>) => void;
 }
-
+//In SexInput, we handle the radio group's change event. When a button is selected, we check if the selected value is the same as the current sex value.
+//If so, we unset it by setting it to null.
+//If not, we just update to the new value.
 const SexInput: FC<SexInputProps> = ({ sex, onChange }) => {
-  return <div>TODO</div>;
+  const handleSexChange = (e: any) => {
+    const newSex = e.target.value === sex ? null : e.target.value;
+    onChange(newSex);
+  };
+
+  return (
+    <Radio.Group value={sex} onChange={handleSexChange}>
+      <Radio value={Sex.Male}>Male</Radio>
+      <Radio value={Sex.Female}>Female</Radio>
+    </Radio.Group>
+  );
 };
+
 /** Editable Code END **/
 
 /**
@@ -45,20 +59,20 @@ export const InputForms: FC<Task> = (task) => {
   const [firstName, setFirstName] = useState<string>();
   const [lastName, setLastName] = useState<string>();
 
-  const updateCredentials: InputProps["onChange"] = (e) => {
+  const updateCredentials: InputProps['onChange'] = (e) => {
     const value = e.target.value;
     switch (e.target.name) {
-      case "title":
+      case 'title':
         setTitle(value);
         break;
-      case "firstName":
+      case 'firstName':
         setFirstName(value);
         break;
-      case "lastName":
+      case 'lastName':
         setLastName(value);
         break;
-      case "middleNames":
-        setMiddleNames(value.split(" "));
+      case 'middleNames':
+        setMiddleNames(value.split(' '));
         break;
       default:
         return;
@@ -76,52 +90,51 @@ export const InputForms: FC<Task> = (task) => {
     alert(`${buildFullName(patientName)} ${sex}`);
   };
 
-  const disabled = false;
-
+  const disabled = !firstName || !lastName;
   /** Editable Code END **/
 
   return (
     <TaskWrapper task={task}>
-      <Form layout={"vertical"}>
+      <Form layout={'vertical'}>
         <Row gutter={8}>
           <Col span={12}>
-            <Form.Item label={"Title"}>
+            <Form.Item label={'Title'}>
               <Input
-                name={"title"}
+                name={'title'}
                 value={title}
                 onChange={updateCredentials}
               />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label={"First name"}>
+            <Form.Item label={'First name'}>
               <Input
-                name={"firstName"}
+                name={'firstName'}
                 value={firstName}
                 onChange={updateCredentials}
               />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label={"Middle names"}>
+            <Form.Item label={'Middle names'}>
               <Input
-                name={"middleNames"}
-                value={middleNames.join(" ")}
+                name={'middleNames'}
+                value={middleNames.join(' ')}
                 onChange={updateCredentials}
               />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label={"Last name"}>
+            <Form.Item label={'Last name'}>
               <Input
-                name={"lastName"}
+                name={'lastName'}
                 value={lastName}
                 onChange={updateCredentials}
               />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label={"Sex"}>
+            <Form.Item label={'Sex'}>
               <SexInput sex={sex} onChange={(value) => setSex(value)} />
             </Form.Item>
           </Col>
