@@ -1,4 +1,3 @@
-import { log } from 'console';
 import { Patient, Resolvers, Sex } from '../__generated__/resolvers-types';
 import { randomUUID } from 'crypto';
 import { GraphQLError } from 'graphql/error';
@@ -82,12 +81,10 @@ export const patientResolvers: Resolvers = {
       return newPatient;
     },
     deletePatient: async (_, { id }) => {
-      console.log('id', id);
       if (!isValidUUID(id)) {
         throw new GraphQLError('Invalid UUID');
       }
       const index = patients.findIndex((patient) => {
-        console.log(patient.id);
         return patient.id === id;
       });
       if (index !== -1) {

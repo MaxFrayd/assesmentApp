@@ -1,6 +1,11 @@
 import React, { FC } from 'react';
 import { Form, Button, Input, Select, Modal } from 'antd';
-import { Maybe, Patient, Sex } from '@/__generated__/graphql-generated';
+import {
+  Maybe,
+  Patient,
+  Sex,
+  PatientInput,
+} from '@/__generated__/graphql-generated';
 import { buildFullName } from '@/utils/formatters';
 
 interface PatientPreviewProps {
@@ -28,6 +33,8 @@ export const EditPatientModal: FC<PatientPreviewProps> = ({
   handleOk,
 }) => {
   /** Editable Code START **/
+  const [form] = Form.useForm();
+
   return (
     <Modal
       open={open}
@@ -37,8 +44,11 @@ export const EditPatientModal: FC<PatientPreviewProps> = ({
     >
       <Form
         name="addPatient"
-        onFinish={handleOk}
-        initialValues={{ name: 'test' }}
+        form={form}
+        onFinish={(values: PatientInput) =>
+          handleOk({ ...values, id: patient?.id })
+        }
+        initialValues={{ ...patient }}
       >
         <Form.Item
           label="First Name"
@@ -127,7 +137,7 @@ export const EditPatientModal: FC<PatientPreviewProps> = ({
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Add Patient
+            Update Patient
           </Button>
         </Form.Item>
       </Form>

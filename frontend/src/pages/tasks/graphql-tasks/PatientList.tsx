@@ -24,21 +24,6 @@ import {
 import { TaskWrapper } from '@/components/TaskWrapper';
 import { useMutation, gql, useQuery } from '@apollo/client';
 
-interface PatientFormValues {
-  id?: string;
-  name: {
-    firstName: string;
-    lastName: string;
-  };
-  dateOfBirth: string;
-  address: {
-    street: string;
-    houseNumber: string;
-    city: string;
-  };
-  sex: Sex;
-}
-
 const CREATE_PATIENT = gql`
   mutation CreatePatient($input: PatientInput!) {
     createPatient(patient: $input) {
@@ -49,6 +34,11 @@ const CREATE_PATIENT = gql`
         __typename
       }
       dateOfBirth
+      address {
+        street
+        houseNumber
+        city
+      }
       sex
       __typename
     }
@@ -75,6 +65,25 @@ const GET_PATIENTS = gql`
   }
 `;
 
+const GET_PATIENT = gql`
+  query GetPatient($id: String!) {
+    getPatient(id: $id) {
+      id
+      name {
+        firstName
+        lastName
+      }
+      dateOfBirth
+      address {
+        street
+        houseNumber
+        city
+      }
+      sex
+    }
+  }
+`;
+
 const UPDATE_PATIENT = gql`
   mutation UpdatePatient($input: PatientInput!) {
     updatePatient(patient: $input) {
@@ -92,15 +101,30 @@ const UPDATE_PATIENT = gql`
 `;
 
 export const PatientList: FC<Task> = (task) => {
-  const [patient, setPatient] = useState<Patient | null>({});
+  const [patient, setPatient] = useState<Patient | null>(null);
+  const [patientId, setPatientId] = useState<Maybe<string> | null>(null);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [createPatientMutation] = useMutation(CREATE_PATIENT);
   const [deletePatientMutation] = useMutation(DELETE_PATIENT);
   const [updatePatientMutation] = useMutation(UPDATE_PATIENT);
 
   const { data, refetch, loading, error } = useQuery(GET_PATIENTS);
+  const { refetch: refetchPatient } = useQuery(GET_PATIENT, {
+    skip: !patient,
+    variables: { id: patientId },
+  });
 
   useEffect(() => {
+    // Fetches the specific patient data when the patient ID changes.
+    if (patientId) {
+      refetchPatient().then(({ data }) => {
+        setPatient(data.getPatient);
+      });
+    }
+  }, [patientId, refetchPatient]);
+
+  useEffect(() => {
+    // Updates the patients list when the data changes.
     if (data && data.listPatients) {
       setPatients(data.listPatients);
     }
@@ -135,6 +159,13 @@ export const PatientList: FC<Task> = (task) => {
       key: 'dateOfBirth',
       title: 'Date of Birth',
       dataIndex: 'dateOfBirth',
+      render: (dateOfBirth) => {
+        const dateObject = new Date(dateOfBirth);
+        const day = dateObject.getDate().toString().padStart(2, '0');
+        const month = (dateObject.getMonth() + 1).toString().padStart(2, '0');
+        const year = dateObject.getFullYear();
+        return `${day}.${month}.${year}`;
+      },
     },
     {
       key: 'sex',
@@ -144,12 +175,12 @@ export const PatientList: FC<Task> = (task) => {
     {
       key: 'actions',
       title: 'Actions',
-      render: (_, record) => (
+      render: (_, record: Patient) => (
         <Space>
           <EditTwoTone
             className={'cursor-pointer'}
             onClick={() => {
-              setPatient(record);
+              setPatientId(record.id);
             }}
           />
           <Popconfirm
@@ -163,17 +194,17 @@ export const PatientList: FC<Task> = (task) => {
     },
   ];
 
-  const handleOk = (values: PatientFormValues) => {
+  const handleOk = (values: Patient) => {
     const patientInput: PatientInput = {
       name: {
-        firstName: values.name.firstName,
-        lastName: values.name.lastName,
+        firstName: values.name?.firstName,
+        lastName: values.name?.lastName,
       },
       dateOfBirth: values.dateOfBirth,
       address: {
-        street: values.address.street,
-        houseNumber: values.address.houseNumber,
-        city: values.address.city,
+        street: values.address?.street,
+        houseNumber: values.address?.houseNumber,
+        city: values.address?.city,
       },
       sex: values.sex,
     };
@@ -207,7 +238,8 @@ export const PatientList: FC<Task> = (task) => {
     })
       .then((response) => {
         refetch();
-        notification.success({ message: 'Patient created successfully.' });
+        onCloseEditModal();
+        notification.success({ message: 'Patient data updated successfully.' });
         setIsModalVisible(false);
       })
       .catch((error) => {
@@ -219,6 +251,11 @@ export const PatientList: FC<Task> = (task) => {
 
   const handleCancel = () => {
     setIsModalVisible(false);
+  };
+
+  const onCloseEditModal = () => {
+    setPatient(null);
+    setPatientId(null);
   };
 
   return (
@@ -235,12 +272,14 @@ export const PatientList: FC<Task> = (task) => {
             ),
           }}
         />
-        <EditPatientModal
-          open={!!patient}
-          handleOk={handleOk}
-          onClose={() => setPatient(null)}
-          patient={patient}
-        />
+        {!!patient && (
+          <EditPatientModal
+            open={!!patient}
+            handleOk={handleOk}
+            onClose={onCloseEditModal}
+            patient={patient}
+          />
+        )}
         <Button
           icon={<PlusOutlined />}
           onClick={() => setIsModalVisible(true)}
