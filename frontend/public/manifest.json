@@ -1,6 +1,6 @@
 {
-  "short_name": "Avelios Medical",
-  "name": "Avelios Medical Coding Challenge",
+  "short_name": "App Medical",
+  "name": "App Medical Coding Challenge",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "avelios_logo.svg",
+      "src": "app_logo.svg",
       "type": "image/svg",
       "sizes": "192x192"
     },
     {
-      "src": "avelios_logo.svg",
+      "src": "app_logo.svg",
       "type": "image/svg",
       "sizes": "512x512"
     }

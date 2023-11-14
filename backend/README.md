@@ -1,10 +1,11 @@
-# Avelios Coding Challenge Backend
+# Coding Challenge Backend
 
 ## ❗Important: Don't edit this project❗
 
 ## Setup and start
 
 Install dependencies:
+
 ```shell
 yarn install
 ```

@@ -1,6 +1,14 @@
 import React, { FC, useState } from 'react';
 import { Radio } from 'antd';
-import { Button, Col, Form, Input, InputProps, Row } from 'antd';
+import {
+  Button,
+  Col,
+  Form,
+  Input,
+  InputProps,
+  Row,
+  RadioChangeEvent,
+} from 'antd';
 import { Task } from '@/index';
 import { buildFullName } from '@/utils/formatters';
 import { TaskWrapper } from '@/components/TaskWrapper';
@@ -23,7 +31,7 @@ interface SexInputProps {
 //If so, we unset it by setting it to null.
 //If not, we just update to the new value.
 const SexInput: FC<SexInputProps> = ({ sex, onChange }) => {
-  const handleSexChange = (e: any) => {
+  const handleSexChange = (e: RadioChangeEvent) => {
     const newSex = e.target.value === sex ? null : e.target.value;
     onChange(newSex);
   };
